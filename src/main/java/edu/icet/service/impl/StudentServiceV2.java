@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,22 +31,32 @@ public class StudentServiceV2 implements StudentService {
 
     @Override
     public void updateStudent(StudentDto studentDto) {
-
+        repository.save(mapper.map(studentDto,StudentEntity.class));
     }
 
     @Override
     public void deleteStudent(Integer id) {
-
+        repository.deleteById(id);
     }
 
     @Override
     public StudentDto searchById(Integer id) {
-        return null;
+        StudentEntity studentEntity = repository.findById(id).get();
+        StudentDto studentDto = mapper.map(studentEntity,StudentDto.class);
+        return studentDto;
     }
 
     @Override
     public List<StudentDto> getAllStudents() {
-        return List.of();
+        List<StudentEntity> studentEntityList = repository.findAll();
+
+        ArrayList<StudentDto> studentDtoArrayList = new ArrayList<>();
+
+        studentEntityList.forEach(studentEntity -> {
+            StudentDto studentDto = mapper.map(studentEntity,StudentDto.class);
+            studentDtoArrayList.add(studentDto);
+        });
+        return  studentDtoArrayList;
     }
 
     @Override
