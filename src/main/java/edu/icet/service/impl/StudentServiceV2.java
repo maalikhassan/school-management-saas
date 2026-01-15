@@ -1,7 +1,11 @@
 package edu.icet.service.impl;
 
 import edu.icet.dto.StudentDto;
+import edu.icet.entity.StudentEntity;
+import edu.icet.repository.StudentRepository;
 import edu.icet.service.StudentService;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +14,13 @@ import java.util.List;
 @Service
 @Primary
 public class StudentServiceV2 implements StudentService {
+    @Autowired
+    StudentRepository repository;
+
+    @Autowired
+    ModelMapper mapper;
+
+
     @Override
     public String getVersion() {
         return "v2.0.0";
@@ -22,6 +33,9 @@ public class StudentServiceV2 implements StudentService {
 
     @Override
     public void addStudent(StudentDto studentDto) {
+
+        StudentEntity studentEntity = mapper.map(studentDto,StudentEntity.class);
+        repository.save(studentEntity);
 
     }
 
