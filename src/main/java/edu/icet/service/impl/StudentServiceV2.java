@@ -20,17 +20,6 @@ public class StudentServiceV2 implements StudentService {
     @Autowired
     ModelMapper mapper;
 
-
-    @Override
-    public String getVersion() {
-        return "v2.0.0";
-    }
-
-    @Override
-    public String getName() {
-        return "Student Xyz from V2";
-    }
-
     @Override
     public void addStudent(StudentDto studentDto) {
 
@@ -62,5 +51,15 @@ public class StudentServiceV2 implements StudentService {
     @Override
     public List<StudentDto> searchStudentsByName(String name) {
         return List.of();
+    }
+
+    @Override
+    public String getVersion() {
+        return "v2.0.0";
+    }
+
+    @Override
+    public String getName() {
+        return "Student Xyz from V2";
     }
 }
