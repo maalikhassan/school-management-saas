@@ -1,16 +1,17 @@
-package edu.icet.service;
+package edu.icet.service.impl;
 
+import edu.icet.service.StudentService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudentServiceV1 implements StudentService {
+public class StudentServiceV1 { // removed 'implements StudentService'
 
-    @Override
+
     public String getVersion() {
         return "v1.0.0";
     }
 
-    @Override
+
     public String getName() {
         return "Student Xyz";
     }
