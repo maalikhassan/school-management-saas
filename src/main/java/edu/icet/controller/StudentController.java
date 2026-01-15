@@ -17,6 +17,7 @@ public class StudentController {
         return service.getName();
     }
 
+    @GetMapping("/get-version")
     public String getVersion(){
         return service.getVersion();
     }
